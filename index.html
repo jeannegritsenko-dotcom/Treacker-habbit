@@ -26,10 +26,9 @@
     --pink-1: #f7d9e8;
     --pink-2: #ec8fbd;
     --pink-3: #dc5a9f;
-    --star-soft: rgba(140, 70, 110, .42);
+    --star-soft: rgba(120, 40, 85, .38);
     --font-display: "Mriya Grotesk", "Mriya Grotesk Heavy", "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
     --font-text: -apple-system, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
-    --gx: 68%; --gy: 46%;
   }
   :root[data-theme="light"] { --bg: #141414; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #141414; } }
@@ -60,6 +59,7 @@
     max-width: 460px;
     height: 100%;
     padding: 0;
+    container-type: inline-size;
   }
 
   .card {
@@ -76,29 +76,17 @@
   /* ---------- Верхняя часть с градиентом ---------- */
   .hero {
     position: relative;
-    flex: 1 1 58%;
+    flex: 1 1 60%;
     min-height: 0;
     overflow: hidden;
-    background:
-      radial-gradient(circle at var(--gx) var(--gy),
-        #e17ab5 0%, var(--pink-3) 22%, var(--pink-2) 52%, var(--pink-1) 82%, #fff 100%);
-    transition: --gx .6s;
-  }
-  /* белая дымка слева и снизу, как на макете */
-  .hero::before {
-    content: "";
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(100deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 30%),
-      linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 28%);
-    pointer-events: none;
+    background: #f9a8d1 url("data:image/png;base64,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") center / 100% 100% no-repeat;
   }
 
   .skip {
     position: absolute;
-    top: 16px; right: 20px;
+    top: 14px; right: 20px;
     z-index: 5;
-    font: 500 16px/1 var(--font-text);
+    font: 500 17px/1 var(--font-text);
     color: #ffffff;
     background: none;
     border: 0;
@@ -131,32 +119,32 @@
     position: relative;
     flex: 0 0 auto;
     background: var(--paper);
-    padding: 4px 24px 22px;
+    padding: 30px 4.4cqw 22px;
   }
   .viewport { overflow: hidden; }
   .track {
     display: flex;
     transition: transform .5s cubic-bezier(.3,.8,.3,1);
   }
-  .slide { flex: 0 0 100%; padding-right: 12px; }
+  .slide { flex: 0 0 100%; }
   h1 {
     margin: 0 0 10px;
     font-family: var(--font-display);
     font-weight: 800;
     font-style: normal;
-    font-size: clamp(24px, 7.2vw, 30px);
+    font-size: min(8.8cqw, 40px);
     line-height: 1.1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     color: var(--ink);
     white-space: nowrap;
   }
   /* запасной вариант: Inter Black Italic, пока нет Mriya */
   p {
     margin: 0;
-    font-size: 16px;
+    font-size: min(4.5cqw, 20px);
     line-height: 1.42;
-    color: var(--muted);
-    max-width: 23ch;
+    color: #9b8e95;
+    max-width: 66cqw;
     min-height: 4.26em;
   }
 
@@ -164,17 +152,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 18px;
+    margin-top: 34px;
     gap: 16px;
   }
   .dots { display: flex; gap: 6px; align-items: center; }
   .dot {
-    height: 7px; width: 7px; border-radius: 7px;
-    background: #e8e4e7;
+    height: 9px; width: 9px; border-radius: 9px;
+    background: #e5e5ea;
     border: 0; padding: 0; cursor: pointer;
     transition: width .35s cubic-bezier(.3,.8,.3,1), background .35s;
   }
-  .dot.active { width: 18px; background: var(--ink); }
+  .dot.active { width: 22px; background: var(--ink); }
 
   .cta {
     flex: 0 0 auto;
@@ -269,36 +257,36 @@
   var STAR = "M12 0C13.1 7.2 16.8 10.9 24 12C16.8 13.1 13.1 16.8 12 24C10.9 16.8 7.2 13.1 0 12C7.2 10.9 10.9 7.2 12 0Z";
 
   /* Положение звёзд для каждого экрана: x, y в %, размер в px, поворот */
+  /* x, y: центр в % от верхней части, s: размер в cqw (% ширины экрана), o: прозрачность */
   var layouts = [
-    [ // экран 1, как на макете
-      { x: 40, y: 56, s: 110, big: true },
-      { x: 27, y: 38, s: 52, tw: "" },
-      { x: 71, y: 33, s: 40, dark: true },
-      { x: 80, y: 62, s: 30, tw: "d2" },
-      { x: 27, y: 80, s: 30, tw: "d3" },
-      { x: 73, y: 83, s: 48, tw: "" },
-      { x: 67, y: 93, s: 22, tw: "d2" }
+    [ // экран 1: как на референсе
+      { x: 35.8, y: 40.5, s: 25.9, big: true },
+      { x: 19.2, y: 21.2, s: 12.1, tw: "" },
+      { x: 74.4, y: 15.1, s: 9.5,  o: .65 },
+      { x: 85.7, y: 48.0, s: 7.1,  tw: "d2" },
+      { x: 19.2, y: 71.1, s: 4.3,  tw: "d3" },
+      { x: 77.5, y: 74.1, s: 11.5, tw: "" },
+      { x: 69.1, y: 85.5, s: 3.4,  tw: "d2" }
     ],
     [ // экран 2
-      { x: 58, y: 48, s: 120, big: true, r: 90 },
-      { x: 24, y: 30, s: 36, tw: "d2" },
-      { x: 76, y: 28, s: 54, tw: "" },
-      { x: 30, y: 70, s: 44, tw: "d3" },
-      { x: 84, y: 66, s: 28, tw: "" },
-      { x: 56, y: 88, s: 26, tw: "d2" },
-      { x: 18, y: 54, s: 22, tw: "d3" }
+      { x: 62, y: 46, s: 27, big: true, r: 90 },
+      { x: 22, y: 26, s: 9,  tw: "d2" },
+      { x: 80, y: 24, s: 13, o: .65 },
+      { x: 24, y: 68, s: 11, tw: "d3" },
+      { x: 86, y: 66, s: 6,  tw: "" },
+      { x: 55, y: 86, s: 5,  tw: "d2" },
+      { x: 14, y: 50, s: 4,  tw: "d3" }
     ],
     [ // экран 3
-      { x: 50, y: 52, s: 128, big: true, r: 180 },
-      { x: 78, y: 34, s: 34, tw: "" },
-      { x: 22, y: 36, s: 46, tw: "d3" },
-      { x: 20, y: 76, s: 28, tw: "d2" },
-      { x: 76, y: 74, s: 52, tw: "" },
-      { x: 48, y: 22, s: 24, tw: "d2" },
-      { x: 62, y: 90, s: 28, tw: "d3" }
+      { x: 45, y: 48, s: 28, big: true, r: 180 },
+      { x: 80, y: 30, s: 8,  tw: "" },
+      { x: 20, y: 30, s: 11, o: .65 },
+      { x: 18, y: 74, s: 6,  tw: "d2" },
+      { x: 78, y: 72, s: 12, tw: "" },
+      { x: 52, y: 18, s: 5,  tw: "d2" },
+      { x: 64, y: 88, s: 6,  tw: "d3" }
     ]
   ];
-  var glow = [ [68, 46], [34, 52], [60, 38] ];
 
   var NS = "http://www.w3.org/2000/svg";
   var starsEl = document.getElementById("stars");
@@ -339,16 +327,14 @@
     var lay = layouts[index];
     starNodes.forEach(function (node, k) {
       var c = lay[k];
-      node.style.left = "calc(" + c.x + "% - " + (c.s / 2) + "px)";
-      node.style.top = "calc(" + c.y + "% - " + (c.s / 2) + "px)";
-      node.style.width = c.s + "px";
-      node.style.height = c.s + "px";
+      node.style.left = "calc(" + c.x + "% - " + (c.s / 2) + "cqw)";
+      node.style.top = "calc(" + c.y + "% - " + (c.s / 2) + "cqw)";
+      node.style.width = c.s + "cqw";
+      node.style.height = c.s + "cqw";
       node.style.transform = "rotate(" + (c.r || 0) + "deg)";
       node.setAttribute("class", "star" + (c.big ? " big" : "") + (c.tw !== undefined ? " tw " + c.tw : ""));
-      node.style.fill = c.dark ? "rgba(120,40,85,.55)" : "";
+      node.style.fill = c.o ? "rgba(120,40,85," + c.o + ")" : "";
     });
-    hero.style.setProperty("--gx", glow[index][0] + "%");
-    hero.style.setProperty("--gy", glow[index][1] + "%");
     track.style.transform = "translateX(" + (-index * 100) + "%)";
     Array.prototype.forEach.call(dotsEl.children, function (d, k) {
       d.classList.toggle("active", k === index);
